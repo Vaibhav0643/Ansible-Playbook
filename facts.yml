@@ -1,0 +1,10 @@
+---
+- name: Checking facts
+  hosts: localhost
+  tasks:
+    - name: Return ansible_facts
+      mytask_facts:
+      register: testout
+    - name: dump the output
+      debug:
+        msg: "{{testout}}" 

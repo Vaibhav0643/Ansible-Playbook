@@ -1,0 +1,9 @@
+- name: Create a file
+  file: 
+    path: /home/ec2-user/hello.txt
+    state: touch
+
+
+- name: Install httpd
+  yum : name='{{pkgname}}' state=latest
+  notify: Restart httpd Service

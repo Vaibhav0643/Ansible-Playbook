@@ -1,0 +1,11 @@
+--- 
+- name: Print Message 
+  hosts: localhost
+  gather_facts: true
+  vars_files:
+    - ./vars.yml
+  tasks:
+    - name: Printing message
+      debug:
+        msg: The IP Address of this machine is {{ansible_default_ipv4.address}}.The OS system on this machine is {{ansible_distribution}}
+

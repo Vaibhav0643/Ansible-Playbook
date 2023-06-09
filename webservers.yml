@@ -1,0 +1,24 @@
+---
+- name: Set up web servers
+  hosts: all
+  become: yes
+  tasks: 
+    - name: Install Apache on RedHat system
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_facts['distribution']== "RedHat"
+
+    - name: Install Apache on Debian system
+      yum:
+        name: apache2
+        state: present
+      when: ansible_facts['distribution']== "Debian"
+
+    - name: Deploy Web content
+      template:
+        src: index.htm.j2
+        dest: /var/www/html/index.html
+        owner: "{{ web_user_name }}"
+        group: "{{ web_user_name }}"
+

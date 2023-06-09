@@ -1,0 +1,11 @@
+---
+- name: Update all servers
+  hosts: all
+  tasks:
+    - name: Update all servers
+      yum: 
+        update_cache: yes
+        name: "*"
+        state: latest
+        update_only: yes
+          #        security: yes

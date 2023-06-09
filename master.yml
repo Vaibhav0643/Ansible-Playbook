@@ -1,0 +1,5 @@
+--- # This is the master file for roles
+- hosts: all
+  become: yes
+  roles:
+    - webservers

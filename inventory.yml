@@ -1,0 +1,10 @@
+all:
+  children:
+    rhel:
+       vars:
+          web_service_name: "httpd"
+          web_user_name: "apache"
+       hosts:
+         172.31.13.128:
+            server_age: "new"
+

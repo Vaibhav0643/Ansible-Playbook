@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+     - name: Task information
+       mytask_info:
+          name: hello world
+       register: testout
+     - name: dump test output
+       debug:
+         msg: "{{testout}}"

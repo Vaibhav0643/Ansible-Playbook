@@ -1,0 +1,6 @@
+--- # Using Conditions
+- hosts: all
+  tasks: 
+    - name: Installing httpd using conditions
+      yum : name=httpd state=latest
+      when: ansible_os_family=="Debian"

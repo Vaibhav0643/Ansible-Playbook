@@ -1,0 +1,10 @@
+--- # Using loops
+- hosts: all
+  tasks: 
+   - name: Create multiple users using loops
+     user: name='{{item}}'  state=absent
+     with_items:
+       - Pulkit
+       - Vaibhav
+       - Varun
+

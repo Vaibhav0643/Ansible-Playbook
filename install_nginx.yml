@@ -1,0 +1,46 @@
+--- # Install nginx
+- name: Setup nginx server on all hosts
+  hosts: all
+  become: yes
+  vars:
+    pkgname: nginx
+  tasks: 
+    - name: Install the latest version of nginx
+      yum : 
+       name: "{{pkgname}}"
+       state: latest
+
+    - name: Start nginx service
+      service: 
+         name: nginx
+         state: started
+
+    - name: Enable nginx service
+      service:
+         name: nginx
+         enabled: yes
+
+    - name: Get nginx installed version
+      command: nginx -v
+      register: nginx_version
+
+    - name: Print nginx version
+      debug: 
+        msg: "This current version of nginx is {{ nginx_version.stderr_lines[0] }}"
+
+    # Show status of all services
+    - name: collect facts about system services
+      service_facts:
+      register: services_state
+
+    - name: Debug
+      debug:
+       var: services_state  
+      
+        # Show status of all services 
+        #    - name: Populate service facts
+        #      ansible.builtin.service_facts:
+
+        #    - name: Print service facts
+        #      ansible.builtin.debug:
+        #        var: ansible_facts.services
